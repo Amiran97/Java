@@ -1,0 +1,25 @@
+package com.testjava.methods;
+
+class VarArgs {
+
+    public static void sum(int[] ar) {
+        int s = 0;
+        for (int current : ar) {
+            s += current;
+        }
+        System.out.println(s);
+    }
+
+    public static void summa(int... args) {
+        int s = 0;
+        for (int current : args) {
+            s += current;
+        }
+        System.out.println(s);
+    }
+
+    public static void main(String[] args) {
+        sum(new int[]{1, 2, 3, 4, 5});
+        summa(1, 2, 3, 4, 5);
+    }
+}
