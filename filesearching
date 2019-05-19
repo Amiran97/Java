@@ -1,0 +1,33 @@
+package com.testjava.recursion;
+
+import java.io.File;
+import java.io.IOException;
+
+public class AllFiles {
+
+    static int totalCount = 0;
+
+    static void listAll(String path)
+            throws IOException {
+        try {
+            File dir = new File(path);
+            File[] list = dir.listFiles();
+
+            for (File f : list) {
+                if (f.isFile()) {
+                    System.out.println(++totalCount + ") " + f.getCanonicalPath());
+                    Thread.sleep(50);
+                } else {
+                    listAll(f.getCanonicalPath());
+                }
+
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        listAll("C:\\android\\studio\\");
+    }
+}
