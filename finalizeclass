@@ -1,0 +1,45 @@
+package com.testjava.destructors;
+
+class Person {
+
+    String name;
+    String surname;
+    int age;
+
+    Person() { // конструктор без параметров
+        name = "Иван";
+        surname = "Иванов";
+        age = 30;
+    }
+
+    Person(int number) {
+        age = number;
+    }
+
+    Person(String n, String s, int a) { // конструктор с параметрами
+        name = n;
+        surname = s;
+        age = a;
+    }
+
+    void print() {
+        System.out.println(name + " " + surname + ", " + age + " лет.");
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        System.out.println("Object #" + age);
+    }
+
+}
+
+class Program {
+
+    public static void main(String[] args) {
+        int count = 100000;
+        for (int i = 0; i < count; i++) {
+            Person p = new Person(i);
+        }
+    }
+}
