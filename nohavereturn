@@ -1,0 +1,14 @@
+package com.testjava.methods;
+
+public class Example {
+
+    static double withoutReturn() {
+        while (true) {
+            System.out.println("do smth...");
+        }
+    }
+
+    public static void main(String[] args) {
+        withoutReturn();
+    }
+}
