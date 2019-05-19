@@ -1,0 +1,32 @@
+package com.testjava.constructors;
+
+class Person {
+
+    String name;
+    String surname;
+    int age;
+
+    Person(String n, String s, int a) {
+        name = n;
+        surname = s;
+        age = a;
+    }
+
+    void print() {
+        System.out.println(name + " " + surname + ", " + age + " лет.");
+    }
+}
+
+class Program {
+
+    public static void main(String[] args) {
+        Person a = new Person("Petr", "Petrov", 47);
+        Person b = new Person();
+        // constructor Person in class Person cannot be applied to given types;
+        // required: String,String,int
+        // found: no arguments
+        // reason: actual and formal argument lists differ in length
+        a.print();
+        b.print();
+    }
+}
