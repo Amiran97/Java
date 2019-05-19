@@ -1,0 +1,27 @@
+package com.testjava.methods;
+
+public class OverloadingExample {
+
+    static void line(int length, char symbol) {
+        for (int i = 0; i < length; i++) {
+            System.out.print(symbol);
+        }
+        System.out.println();
+    }
+
+    static void line(int length) {
+        line(length, '*');
+    }
+
+    static void line() {
+        line(10);
+    }
+
+    public static void main(String[] args) {
+
+        line(20, '@');
+        line(15);
+        line();
+
+    }
+}
