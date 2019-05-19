@@ -1,0 +1,43 @@
+package com.testjava.recursion;
+
+public class MineSearcher {
+
+    static int width = 10;
+    static int height = 10;
+
+    private static int checkMines(int x, int y) {
+        // подсчёт количества мин в радиусе 1 клетки от x:y
+        return 0;
+    }
+
+    enum State {
+        NORMAL, SOME_VALUE, EMPTY, MINE, FLAG, NOT_SURE
+    };
+
+    static State[][] field = new State[height][width];
+
+    static void openCell(int x, int y) {
+        if (field[y][x] == State.MINE) {
+            System.out.println("Oops! Game over!");
+            System.exit(0);
+        } else if (field[y][x] != State.EMPTY) { // is NORMAL, and not EMPTY!
+            int result = checkMines(x, y);
+            if (result == 0) {
+                field[y][x] = State.EMPTY;
+                for (int j = y - 1; j <= y + 1; j++) {
+                    for (int i = x - 1; i <= x + 1; i++) {
+                        if (i >= 0 && i < width && j >= 0 && j < height) {
+                            openCell(x, y);
+                        }
+                    }
+                }
+            } else {
+                field[y][x] = State.SOME_VALUE;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        openCell(3, 7);
+    }
+}
