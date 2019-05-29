@@ -1,0 +1,52 @@
+package javaapplication1;
+
+// бывает такое, что определение класса начинается с комментариев,
+// содержащих важную информацию:
+
+// Author: Ivan Petrovich
+// Date: 25/12/2018
+// Current revision: 6
+// Last modified: 25/12/2018
+// By: Masha Podmazko
+// Reviewers: Katiya, Kirill, Vadim
+class SomeClass {
+    // class code goes here
+}
+
+// чтобы записать то же самое в виде аннотации, необходимо сначала
+// определить тип аннотации (annotation type):
+@interface ClassPreamble {
+
+    String author();
+
+    String date();
+
+    int currentRevision() default 1;
+
+    String lastModified() default "no date";
+
+    String lastModifiedBy() default "no date";
+
+    String[] reviewers();
+}
+
+// объявление выглядит как объявление интерфейса, за исключением предшествующего
+// ключевому слову interface символа @. тело аннотации содержит описание
+// элементов аннотации, которое выглядит как описание методов. можно задать значения
+// по умолчанию. объявив тип аннотации, можно его использовать:
+
+@ClassPreamble(author = "Ivan Petrovich",
+        date = "15/02/2018", currentRevision = 6,
+        lastModified = "15/02/2018", lastModifiedBy = "Masha Podmazko",
+        // Note array notation
+        reviewers = {"Katiya", "Kirill", "Vadim"})
+class SameClass {
+	// код класса
+}
+
+public class JavaApplication1 {
+
+    public static void main(String args[]) {
+        SameClass sc = new SameClass();
+    }
+}
