@@ -1,0 +1,37 @@
+package javaapplication1;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+import java.lang.annotation.*;
+
+// для того, чтобы ограничить использование аннотации, её нужно проаннотировать ))
+// для этого существует аннотация @Target
+
+// @Target(ElementType.PACKAGE) - только для пакетов
+// @Target(ElementType.TYPE) - только для классов
+// @Target(ElementType.CONSTRUCTOR) - только для конструкторов
+// @Target(ElementType.METHOD) - только для методов
+// @Target(ElementType.FIELD) - только для переменных класса
+// @Target(ElementType.PARAMATER) - только для параметров метода
+// @Target(ElementType.LOCAL_VARIABLE) - только для локальных переменных
+// @Target({ ElementType.PARAMETER, ElementType.LOCAL_VARIABLE })
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface Mammal {
+
+    String sound();
+
+    int color() default 0xffffff;
+}
+
+@Mammal(color = 0xFFA844, sound = "uuuu")
+class Giraffe {
+    // some code here
+}
+
+public class JavaApplication1 {
+    public static void main(String args[]) {
+        Giraffe g = new Giraffe();
+    }
+}
