@@ -1,0 +1,37 @@
+package javaapplication1;
+
+import java.lang.annotation.Repeatable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+/////////////////////////////////////////////////
+
+@Repeatable(Authors.class)
+@interface Author {
+    String name() default "Oleg";
+    String lastname();
+}
+
+/////////////////////////////////////////////////
+
+@Retention(RetentionPolicy.RUNTIME)
+@interface Authors {
+    Author[] value();
+}
+
+/////////////////////////////////////////////////
+
+@Author(lastname = "Shildt")
+@Author(lastname = "Ekkel")
+class Book {
+    String title;
+    long isbn;
+}
+
+/////////////////////////////////////////////////
+
+public class JavaApplication1 {
+    public static void main(String args[]) {
+        Book b = new Book();
+    }
+}
