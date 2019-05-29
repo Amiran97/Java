@@ -1,0 +1,33 @@
+package javaapplication1;
+
+abstract class Animal {
+    public abstract void speak();
+}
+
+class Cat extends Animal {
+
+    @Override
+    // аннотация говорит о том, что этот метод переопределён
+    public void speak() { // переименовать метод не получится
+        System.out.println("Meow.");
+    }
+
+    /**
+     * @deprecated since version 2.0
+     */
+    // @Deprecated можно и так применить
+    // аннотация говорит о том, что этот метод более не поддерживается, и будет
+    // удалён в ближайшее время
+    public boolean soundsGood() {
+        return true;
+    }
+}
+
+class JavaApplication1 {
+
+    public static void main(String args[]) {
+        Cat c = new Cat();
+        c.soundsGood();
+        System.out.println("Done!");
+    }
+}
