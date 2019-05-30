@@ -1,5 +1,5 @@
 // Server
-public class Main {
+public class Server {
 
     public static final int PORT = 27001;
     public static LinkedList<ServerSomthing> serverList = new LinkedList<>();
