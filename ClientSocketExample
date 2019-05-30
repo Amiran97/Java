@@ -29,12 +29,13 @@ public class Main {
                 String str;
                 try {
                     while (true) {
-                        str = in.readLine(); // ждем сообщения с сервера
+                        str = in.readLine();
                         if (str.equals("stop")) 
                         {
+                            isWork = false;
                             break;
                         }
-                        System.out.println("str");
+                        System.out.println(str);
                     }
                 } 
                 catch (IOException e) {}
@@ -53,6 +54,7 @@ public class Main {
                             if (userWord.equals("stop")) 
                             {
                                 out.write("stop" + "\n");
+                                isWork = false;
                                 break;
                             } 
                             else {
