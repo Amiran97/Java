@@ -22,7 +22,7 @@ public class Main {
                 out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
                 
                 //
-                private class ReadMsg extends Thread {
+                class ReadMsg extends Thread {
                 @Override
                 public void run() {
 
@@ -42,14 +42,14 @@ public class Main {
                 }
                 
                 //
-                public class WriteMsg extends Thread {
+                class WriteMsg extends Thread {
                 @Override
                 public void run() {
                     while (true) {
                         String userWord;
                         try 
                         {
-                           userWord = inputUser.readLine();
+                           userWord = reader.readLine();
                             if (userWord.equals("stop")) 
                             {
                                 out.write("stop" + "\n");
