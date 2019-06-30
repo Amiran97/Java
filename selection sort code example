@@ -1,0 +1,38 @@
+public class YourClassName {
+
+    public static void main(String[] args) {
+
+        int size = 10;
+        int ar[] = new int[size];
+
+        // before sort
+        for (int i = 0; i < size; i++) {
+            ar[i] = (int) (Math.random() * 100);
+            System.out.print(ar[i] + " ");
+        }
+        System.out.print("\n\n");
+
+        // start sort
+        for (int pr = 0; pr < size; pr++) { // current step
+            int minIndex = pr;
+            int minValue = ar[pr];
+
+            for (int j = pr + 1; j < size; j++) // search min value
+            {
+                if (ar[j] < minValue) {
+                    minIndex = j;
+                    minValue = ar[j];
+                }
+            }
+            ar[minIndex] = ar[pr];
+            ar[pr] = minValue;
+        }
+
+        // after sort
+        for (int i = 0; i < size; i++) {
+            System.out.print(ar[i] + " ");
+        }
+        System.out.println("\n");
+
+    }
+}
