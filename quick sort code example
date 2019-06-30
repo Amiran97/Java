@@ -1,0 +1,57 @@
+public class YourClassName {
+
+    public static void quickSort(int mass[], int start, int end) {
+
+        int L = start, R = end;
+        int M = mass[(start + end) / 2];
+
+        do {
+
+            while (mass[L] < M) {
+                L++;
+            }
+            while (mass[R] > M) {
+                R--;
+            }
+
+            if (L <= R) {
+                int temp = mass[L];
+                mass[L] = mass[R];
+                mass[R] = temp;
+                L++;
+                R--;
+            }
+
+        } while (L <= R);
+
+        if (start < R) {
+            quickSort(mass, start, R);
+        }
+        if (L < end) {
+            quickSort(mass, L, end);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        int size = 10;
+        int ar[] = new int[size];
+
+        // before sort
+        for (int i = 0; i < size; i++) {
+            ar[i] = (int) (Math.random() * 100);
+            System.out.print(ar[i] + " ");
+        }
+        System.out.print("\n\n");
+
+        // start sort
+        quickSort(ar, 0, ar.length - 1);
+
+        // after sort
+        for (int i = 0; i < size; i++) {
+            System.out.print(ar[i] + " ");
+        }
+        System.out.println("\n");
+
+    }
+}
