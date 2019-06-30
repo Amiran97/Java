@@ -1,0 +1,32 @@
+public class JavaApplication1 {
+
+    public static void main(String[] args) {
+
+        int size = 10;
+        int ar[] = new int[size];
+
+        // before sort
+        for (int i = 0; i < size; i++) {
+            ar[i] = (int) (Math.random() * 100);
+            System.out.print(ar[i] + " ");
+        }
+        System.out.print("\n\n");
+
+        // start sort
+        for (int pr = 0; pr < size - 1; pr++) {
+            for (int i = size - 1; i > 0; i--) {
+                if (ar[i - 1] > ar[i]) {
+                    int temp = ar[i - 1];
+                    ar[i - 1] = ar[i];
+                    ar[i] = temp;
+                }
+            }
+        }
+        
+        // after sort
+        for (int i = 0; i < size; i++) {
+            System.out.print(ar[i] + " ");
+        }
+        System.out.print("\n\n");
+    }
+}
