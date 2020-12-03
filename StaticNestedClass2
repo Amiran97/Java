@@ -1,0 +1,49 @@
+package javaapplication1;
+
+class Question {
+
+    private Type type;
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public static class Type {
+
+        public static final Type closed = new Type("closed question");
+        public static final Type semiclosed = new Type("semiclosed question");
+        public static final Type open = new Type("open question");
+        public static final Type alternative = new Type("alternative question");
+        public static final Type yesno = new Type("yes/no question");
+        public static final Type ranged = new Type("ranged question");
+        public static final Type scaled = new Type("scaled question");
+
+        private final String description;
+
+        private Type(String s) {
+            description = s;
+        }
+
+        @Override
+        public String toString() {
+            return description;
+        }
+    }
+}
+
+public class JavaApplication1 {
+
+    public static void main(String[] args) {
+        Question q = new Question();
+        q.setType(Question.Type.open);
+
+        Question.Type t = q.getType();
+        if (t == Question.Type.open) {
+            System.out.println(t);
+        }
+    }
+}
