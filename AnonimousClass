@@ -1,0 +1,34 @@
+package javaapplication1;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
+class OuterClass {
+
+    void methodWithLocalClass(final int interval) {
+	// При определении анонимного класса применен полиморфизм - переменная
+        // listener содержит адрес экземпляра анонимного класса, реализующего
+        // существующий интерфейс ActionListener
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Эта строка выводится на экран каждые "
+                        + interval + " ms");
+            }
+        };
+
+        Timer t = new Timer(interval, listener); // Объект анонимного класса
+        // использован внутри метода
+        t.start();
+    }
+}
+
+class JavaApplication1 {
+    public static void main(String[] args) {
+        OuterClass oc = new OuterClass();
+        oc.methodWithLocalClass(500);
+        while (true) {
+        }
+    }
+}
