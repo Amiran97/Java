@@ -1,0 +1,48 @@
+package javaapplication1;
+
+class JavaApplication1 {
+
+    interface HelloWorld {
+        public void greet();
+        public void greetSomeone(String someone);
+    }
+
+    public void sayHello() {
+
+        class RussianGreeting implements HelloWorld {
+
+            @Override
+            public void greet() {
+                greetSomeone("человек");
+            }
+
+            @Override
+            public void greetSomeone(String someone) {
+                System.out.println("Привет, " + someone + "!");
+            }
+        }
+
+        HelloWorld russianGreeting = new RussianGreeting();
+
+        HelloWorld ukrainianGreeting = new HelloWorld() {
+            @Override
+            public void greet() {
+                greetSomeone("пане");
+            }
+
+            public void greetSomeone(String someone) {
+                System.out.println("Доброго дня, " + someone + "!");
+            }
+        };
+
+        russianGreeting.greet();
+        russianGreeting.greetSomeone("Вася");
+        ukrainianGreeting.greet();
+        ukrainianGreeting.greetSomeone("Петро");
+    }
+
+    public static void main(String[] args) {
+        Program p = new Program();
+        p.sayHello();
+    }
+}
