@@ -1,0 +1,52 @@
+package inner;
+
+class OuterClass {
+
+    int a;
+    static int b;
+
+    public void outerMethod() {
+        System.out.println("outer class method");
+        // InnerClass ic = new InnerClass(); // ok!
+        // test(); // cannot find symbol
+        
+    }
+
+    // inner member class (внутренний класс, нестатический!)
+    public class InnerClass {
+
+        int x;
+	      // static int y; // the field cannot be declared static in a non-static
+        // inner type,
+        // unless initialized with a constant expression
+        static final int z = 5;
+
+        InnerClass() {
+            System.out.println("inner class c-tor!");
+        }
+
+        public void innerMethod() {
+            System.out.println("inner class method");
+        }
+
+        public void test() {
+            System.out.println("inner class test method!");
+            System.out.println(a);
+            System.out.println(b);
+            outerMethod();
+            // this.outerMethod();
+            OuterClass.this.outerMethod();
+            // OuterClass.this.innerMethod();
+        }
+    }
+}
+
+class Program {
+
+    public static void main(String[] args) {
+        OuterClass oc = new OuterClass();
+        System.out.println("in main!");
+        OuterClass.InnerClass ic = oc.new InnerClass();
+        ic.test();
+    }
+}
