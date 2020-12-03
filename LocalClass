@@ -1,0 +1,36 @@
+package javaapplication1;
+
+class OuterClass {
+
+    private int outerField;
+
+    // InnerClass outerRef; // ошибка!
+    
+    void methodWithLocalClass(final int parameter) {
+
+        int notFinal = 0;
+
+        class InnerClass {
+
+            int getOuterField() {
+                return /* OuterClass.this. */ outerField; // ок!
+            }
+
+            int getParameter() {
+                // notFinal++; // ошибка! запрещённое действие
+                // return notFinal; // ок! effectively final variable
+                // A variable or parameter whose value is never changed after
+                // it is initialized is effectively final.
+                return parameter; // ок!
+            }
+        }
+
+        InnerClass innerInsideMehod = new InnerClass();
+    }
+}
+
+class JavaApplication1 {
+    public static void main(String[] args) {
+        validatePhoneNumber("123-456-7890", "456-7890");
+    }
+}
