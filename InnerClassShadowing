@@ -1,0 +1,25 @@
+package javaapplication1;
+
+class JavaApplication1 {
+
+    public int x = 0;
+
+    class Inner {
+
+        public int x = 1;
+
+        void innerMethod(int x) {
+            System.out.println("x = " + x); // 15
+            System.out.println("this.x = " + this.x); // 1
+            System.out.println("Program.this.x = " + Program.this.x); // 0
+        }
+    }
+
+    public static void main(String[] args) {
+        Program p = new Program();
+        Inner i = p.new Inner();
+        // Inner i2 = Program.new Inner();
+        // Inner i3 = this.new Inner();
+        i.innerMethod(15);
+    }
+}
