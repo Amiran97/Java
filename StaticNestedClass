@@ -1,0 +1,79 @@
+package javaapplication1;
+
+class OuterClass {
+
+    int a;
+    private int b;
+    protected int c;
+    public int d;
+
+    static int sa;
+    private static int sb;
+    protected static int sc;
+    public static int sd;
+
+    private void m1() {
+        System.out.println("m1");
+    }
+
+    public void m2() {
+        System.out.println("m2");
+    }
+
+    private static void sm1() {
+        System.out.println("sm1");
+    }
+
+    public static void sm2() {
+        System.out.println("sm2");
+    }
+
+    // статический вложенный класс
+    static class StaticNestedClass {
+
+        public void test() {
+			      // cтатические вложенные классы не имеют доступа
+            // к нестатическим полям и методам обрамляющего класса
+            // System.out.println(a);
+            // System.out.println(b);
+            // System.out.println(c);
+            // System.out.println(d);
+
+            System.out.println(sa);
+            System.out.println(sb);
+            System.out.println(sc);
+            System.out.println(sd);
+
+			      // вообще, доступ к нестатическим полям и методам может
+            // осуществляться, но -
+            // только через ссылку на экземпляр обрамляющего класса
+            OuterClass oc = new OuterClass();
+            System.out.println(oc.a);
+            System.out.println(oc.b);
+            System.out.println(oc.c);
+            System.out.println(oc.d);
+
+            System.out.println(oc.sa);
+            System.out.println(oc.sb);
+            System.out.println(oc.sc);
+            System.out.println(oc.sd);
+
+			     // кроме этого, static nested классы имеют доступ к любым
+            // статическим методам внешнего класса, в том числе и к приватным.
+            // m1();
+            // m2();
+            sm1();
+            sm2();
+
+            oc.m1();
+            oc.m2();
+        }
+    }
+}
+
+public class JavaApplication1 {
+    public static void main(String[] args) {
+        OuterClass.StaticNestedClass nestedObject = new OuterClass.StaticNestedClass();
+        nestedObject.test();
+    }
+}
