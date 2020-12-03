@@ -1,0 +1,68 @@
+package javaapplication1;
+
+class OuterClass {
+
+    int a;
+    private int b;
+    public int c;
+    static int s;
+
+    // внутренний класс (нестатический!)
+    public class InnerClass {
+
+        int d;
+        private int e;
+        public int f;
+
+        // http://stackoverflow.com/questions/1953530/why-does-java-prohibit-static-fields-in-inner-classes
+        // static int oops; // inner class не может иметь статических объявлений!
+
+        // про static вообще:
+        // http://info.javarush.ru/translation/2014/04/15/10-%D0%B7%D0%B0%D0%BC%D0%B5%D1%82%D0%BE%D0%BA-%D0%BE-%D0%BC%D0%BE%D0%B4%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82%D0%BE%D1%80%D0%B5-Static-%D0%B2-Java.html
+        public void testAccess() {
+            System.out.println("InnerClass.testAccess()");
+            System.out.print(a + " ");
+            System.out.print(b + " ");
+            System.out.print(c + " ");
+
+            System.out.print(d + " ");
+            System.out.print(e + " ");
+            System.out.println(f);
+        }
+    }
+
+    public void createInnerClassObject() {
+        InnerClass ic = new InnerClass();
+        ic.testAccess();
+    }
+
+    public void getInnerClassFields() {
+        InnerClass ic = new InnerClass();
+        System.out.print(ic.d + " ");
+        System.out.print(ic.e + " ");
+        System.out.println(ic.f);
+        // System.out.print(d + " ");
+    }
+}
+
+class JavaApplication1 {
+
+    public static void main(String[] args) {
+
+        OuterClass oc = new OuterClass();
+        oc.createInnerClassObject();
+        oc.getInnerClassFields();
+
+	      // экземпляр класса InnerClass может быть создан только внутри области
+        // видимости OuterClass
+        // InnerClass ic = new InnerClass();
+	
+        // Внутренние классы ассоциируются не с самим внешним классом, а с
+        // его экземпляром.
+	      // Если конструктор класса OuterClass объявлен как public, создать
+        // экземпляр класса InnerClass
+        // снаружи можно, но только через инстанс обрамляющего класса:
+        OuterClass.InnerClass ins = oc.new InnerClass();
+        ins.testAccess();
+    }
+}
