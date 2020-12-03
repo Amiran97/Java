@@ -1,0 +1,109 @@
+package javaapplication1;
+
+interface First {
+    class Cat {
+        String name;
+        public void some() {
+            System.out.println("some!");
+        }
+    }
+}
+
+interface Second {
+    class Dog {
+        int age;
+        public void awesome() {
+            System.out.println("awesome!");
+        }
+    }
+}
+
+class CatDog implements First, Second {
+    Cat c = new Cat();
+    Dog d = new Dog();
+}
+
+///////////////////////////////////////////////////////////////////
+
+interface Colorable {
+    /* public */ Color getColor();
+    void setColor(Color c);
+
+    /* public static */ class Color {
+
+        @Override
+        public String toString() {
+            return "Color [red=" + red + ", green=" + green + ", blue=" + blue + "]";
+        }
+
+        private int red, green, blue;
+
+        public Color(int red, int green, int blue) {
+            this.red = red;
+            this.green = green;
+            this.blue = blue;
+        }
+
+        public int getRed() {
+            return red;
+        }
+
+        public int getGreen() {
+            return green;
+        }
+
+        public int getBlue() {
+            return blue;
+        }
+
+        public void setRed(int r) {
+            red = r % 256;
+        }
+
+        public void setGreen(int g) {
+            green = g % 256;
+        }
+
+        public void setBlue(int b) {
+            blue = b % 256;
+        }
+    }
+}
+
+class Giraffe implements Colorable {
+
+    String nick;
+    int age;
+
+    Color color;
+
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color c) {
+        color = c;
+    }
+
+    public Giraffe(String nick, int age, Color color) {
+        super();
+        this.nick = nick;
+        this.age = age;
+        this.color = color;
+    }
+}
+
+class JavaApplication1 {
+
+    public static void main(String[] args) {
+        CatDog cd = new CatDog();
+
+        Giraffe.Color color = new Colorable.Color(128, 64, 10);
+        Giraffe g = new Giraffe("Tesla", 8, color);
+
+        Colorable.Color cc = g.getColor();
+        System.out.println(cc);
+    }
+}
