@@ -1,0 +1,60 @@
+package javaapplication1;
+
+enum Season {
+    WINTER, SPRING, SUMMER, AUTUMN
+}
+
+final class SeasonClass /* extends java.lang.Enum */ {
+
+    public static final SeasonClass WINTER = new SeasonClass("WINTER");
+    public static final SeasonClass SPRING = new SeasonClass("SPRING");
+    public static final SeasonClass SUMMER = new SeasonClass("SUMMER");
+    public static final SeasonClass AUTUMN = new SeasonClass("AUTUMN");
+
+    private final String season;
+
+    private SeasonClass(String s) {
+        season = s;
+    }
+
+    @Override
+    public String toString() {
+        return season;
+    }
+}
+
+public class JavaApplication1 {
+
+    public static void main(String args[]) {
+        Season season = Season.WINTER;
+        if (season == Season.WINTER) {
+            season = Season.SPRING;
+        }
+        System.out.println(season);
+
+        SeasonClass s = SeasonClass.WINTER;
+        if (s == SeasonClass.WINTER) {
+            s = SeasonClass.SPRING;
+        }
+        System.out.println(s);
+
+        switch (season) {
+            case WINTER:
+                System.out.println("Winter is bad :(");
+                break;
+            case SPRING:
+                System.out.println("Spring is much better :)");
+                break;
+            case SUMMER:
+                System.out.println("Summer is the best! :Ъ");
+                break;
+            case AUTUMN:
+                System.out.println("Fall is so-so :|");
+                break;
+        }
+
+        switch (season) { // try to add missing case statements yourself
+
+        }
+    }
+}
