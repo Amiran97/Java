@@ -1,0 +1,22 @@
+package enums;
+
+import java.util.Arrays;
+
+enum Direction {
+    North, East, South, West
+}
+
+public class Program {
+
+    public static void main(String args[]) {
+        
+        Direction d = Direction.South;
+        System.out.println("toString() of enum = " + d);
+        System.out.println("метод name() возвращает " + d.name());
+        System.out.println("метод ordinal() возвращает " + d.ordinal()); // 1
+        System.out.println("метод valueOf(String) возвращает "
+                + Direction.valueOf("East"));
+        Direction x = Direction.valueOf("East");
+        System.out.println("метод values() возвращает " + Arrays.toString(Direction.values()));
+    }
+}
