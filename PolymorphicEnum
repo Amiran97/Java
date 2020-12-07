@@ -1,0 +1,67 @@
+package javaapplication1;
+
+interface Moveable {
+    void speed();
+}
+
+enum Direction implements Moveable {
+
+    UP {
+                @Override
+                public Direction opposite() {
+                    return DOWN;
+                }
+
+                @Override
+                public void speed() {
+                    // TODO Auto-generated method stub
+                }
+            },
+    DOWN {
+                @Override
+                public Direction opposite() {
+                    return UP;
+                }
+
+                @Override
+                public void speed() {
+                    // TODO Auto-generated method stub
+                }
+            },
+    RIGHT {
+                @Override
+                public Direction opposite() {
+                    return LEFT;
+                }
+
+                @Override
+                public void speed() {
+                    // TODO Auto-generated method stub
+                }
+            },
+    LEFT {
+                @Override
+                public Direction opposite() {
+                    return RIGHT;
+                }
+
+                @Override
+                public void speed() {
+                    // TODO Auto-generated method stub
+                }
+            };
+
+    public abstract Direction opposite();
+}
+
+public class JavaApplication1 {
+
+    public static void main(String args[]) {
+        // явно отнаследоваться от java.lang.Enum нельзя.
+        System.out.println(Direction.class.getSuperclass());
+
+        Direction d = Direction.LEFT;
+        Direction e = d.opposite();
+        System.out.println("toString() of enum = " + e);
+    }
+}
