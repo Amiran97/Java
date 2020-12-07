@@ -1,0 +1,134 @@
+package exceptions;
+
+import java.util.Date;
+import java.util.Random;
+
+class JobImpossible extends Exception {
+
+    String reason;
+
+    public JobImpossible(String reason) {
+        super(reason);
+        this.reason = reason;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+}
+
+class WorkerIsBusy extends JobImpossible // работник уже чем-то занят
+{
+
+    public WorkerIsBusy(String reason) {
+        super(reason);
+        this.reason = reason;
+    }
+
+    Date finishWorking;
+    String workDescription;
+
+    public Date getFinishWorking() {
+        return finishWorking;
+    }
+
+    public void setFinishWorking(Date finishWorking) {
+        this.finishWorking = finishWorking;
+    }
+
+    public String getWorkDescription() {
+        return workDescription;
+    }
+
+    public void setWorkDescription(String workDescription) {
+        this.workDescription = workDescription;
+    }
+}
+
+class ForceMajor extends JobImpossible // случилось ЧП
+{
+    public ForceMajor(String reason) {
+        super(reason);
+        this.reason = reason;
+    }
+
+    double damage;
+    String forcemajorDescription;
+
+    public double getDamage() {
+        return damage;
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
+    }
+
+    public String getForcemajorDescription() {
+        return forcemajorDescription;
+    }
+
+    public void setForcemajorDescription(String forcemajorDescription) {
+        this.forcemajorDescription = forcemajorDescription;
+    }
+}
+
+class ToolsCrush extends JobImpossible // что-то сломалось
+{
+    String toolcrushDescription;
+
+    public ToolsCrush(String reason) {
+        super(reason);
+        this.reason = reason;
+    }
+
+    public String getToolcrushDescription() {
+        return toolcrushDescription;
+    }
+
+    public void setToolcrushDescription(String toolcrushDescription) {
+        this.toolcrushDescription = toolcrushDescription;
+    }
+}
+
+class Worker {
+
+    private boolean isWorking = false;
+
+    public void work() throws WorkerIsBusy, InterruptedException, ToolsCrush {
+        if (isWorking) {
+            throw new WorkerIsBusy("рабочий занят!");
+        } else {
+            if (verificateTools()) {
+                isWorking = true;
+                System.out.println("рабочий работает...");
+                Thread.sleep(1000);
+                isWorking = false;
+                System.out.println("рабочий закончил работу!");
+            } else {
+                throw new ToolsCrush("ой, молоток сломался!");
+            }
+        }
+    }
+
+    public boolean verificateTools() {
+        Random r = new Random();
+        int code = r.nextInt(5);
+        return code != 0;
+    }
+}
+
+class Program {
+
+    public static void main(String[] args) {
+        Worker andrew = new Worker();
+        try {
+            andrew.work();
+        } catch (WorkerIsBusy | ToolsCrush | InterruptedException e) {
+            e.printStackTrace(System.err);
+        }
+    }
+}
