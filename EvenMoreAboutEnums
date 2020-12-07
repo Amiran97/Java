@@ -1,0 +1,49 @@
+package javaapplication1;
+
+import java.awt.Point;
+
+enum Direction {
+
+    North(0, -1), East(1, 0), South(0, 1), West(-1, 0);
+
+    static int stepLength = 1;
+    private final int xStep, yStep;
+
+    Direction(int xs, int ys) {
+        xStep = xs;
+        yStep = ys;
+    }
+
+    static public boolean setStep(int stepLength) {
+        if (stepLength <= 0) {
+            return false;
+        }
+        Direction.stepLength = stepLength;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return ("[" + xStep + ":" + yStep + "]");
+    }
+
+    public void movePoint(Point p) {
+        p.x += xStep * stepLength;
+        p.y += yStep * stepLength;
+    }
+}
+
+public class JavaApplication1 {
+
+    public static void main(String args[]) {
+        Direction d = Direction.East;
+
+        Point p = new Point(2, 5);
+        System.out.println("координаты некой точки до движения равны " + p);
+        d.movePoint(p);
+        System.out.println("координаты точки после свдига равны " + p);
+        Direction.setStep(5);
+        d.movePoint(p);
+        System.out.println("координаты точки после второго свдига равны " + p);
+    }
+}
