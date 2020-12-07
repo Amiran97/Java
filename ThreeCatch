@@ -1,0 +1,28 @@
+package javaapplication1;
+
+import java.util.Scanner;
+
+class JavaApplication1 {
+
+    private static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        // блоков catch может быть несколько, для разных типов исключений.
+        // два блока с одинаковым типом исключения создать нельзя!
+        // сверху идут более конкретные типы исключений, ниже - более общие
+        try {
+            System.out.print("введите число: ");
+            String a = input.nextLine();
+            int b = Integer.parseInt(a);
+            int c = 0;
+            System.out.println(b / c);
+        } catch (ArithmeticException e) {
+            System.out.println("деление на 0! " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("нужно было ввести число, а не строку...\nа может быть, вы просто ввели очень большое или очень маленькое или вещественное число.");
+        } catch (Exception e) {
+            System.out.println("попасть сюда будет очень трудно :)");
+        }
+    }
+}
