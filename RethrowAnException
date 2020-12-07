@@ -1,0 +1,21 @@
+package javaapplication1;
+
+class JavaApplication1 {
+
+    static void f() throws Exception { // cпецификация исключения!
+        try {
+            throw new Exception("хрясь!");
+        } catch (Exception e) {
+            System.out.println("f(): " + e.getMessage());
+            throw e; // повторная генерация исключения
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            f();
+        } catch (Exception e) {
+            System.out.println("main: " + e.getMessage());
+        }
+    }
+}
