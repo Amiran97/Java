@@ -1,0 +1,25 @@
+package javaapplication1;
+
+class JavaApplication1 {
+
+    public static void main(String[] args) {
+
+        int a = 10;
+        int b = 0;
+        int res = 0;
+
+        try {
+            res = a / b;
+        } catch (ArithmeticException e) {
+            System.out.println("получится бесконечность.");
+            System.out.println(e.getMessage()); // / by zero
+        } finally {
+            if (b == 0) {
+                System.out.println("переменную типа int на ноль лучше не делить!");
+            } else {
+                System.out.println(a + " / " + b + " = " + res);
+            }
+        }
+        System.out.println(10.0 / 0); // Infinity
+    }
+}
