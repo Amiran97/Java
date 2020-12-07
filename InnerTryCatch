@@ -1,0 +1,33 @@
+package javaapplication1;
+
+class JavaApplication1 {
+
+    public static void main(String[] args) {
+
+        // блоки можно вкладывать друг в друга
+        int[] mass = new int[5];
+        int k = 0;
+        try {
+            for (int i = -3; i <= 3; i++) {
+                try {
+                    mass[k] = 100 / i;
+                    System.out.println("mass [" + k + "] = 100 / " + i + " = "
+                            + mass[k]);
+                    k++;
+                } catch (ArithmeticException e) {
+                    System.out.println("внутренний кетч: " + e.getMessage());
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("внешний кетч! " + e.getMessage());
+        }
+
+        // если внутренний блок catch может обработать возникшее исключение -
+        // оно перехватывается и обрабатывается,
+        // после чего продолжается выполнение кода.
+        // если внутренний блок catch не может обработать исключение - тогда
+        // срабатывает внешний блок catch.
+        // если и он не в состоянии обработать исключение - начинается поиск
+        // подходящего обработчика по стеку вызовов.
+    }
+}вложенность try catch
